@@ -6,6 +6,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public final class YouTubeStealer {
     private YouTubeStealer() {
     }
@@ -14,7 +19,7 @@ public final class YouTubeStealer {
     in json format, which contains all the information about the video,
     including direct URL links to various formats.*/
 
-    public static String stealVideoInfo(String videoID) {
+    public static JSONObject stealVideoInfo(String videoID) {
         OutputStream os = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
@@ -81,8 +86,8 @@ public final class YouTubeStealer {
                 response.append(read);
             }
 
-            return response.toString();
-        } catch (IOException e) {
+            return (JSONObject) new JSONParser().parse(response.toString());
+        } catch (IOException | ParseException e) {
             return null;
         }
     }
