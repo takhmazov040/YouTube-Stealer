@@ -9,7 +9,11 @@ import java.nio.charset.StandardCharsets;
 public final class YouTubeStealer {
     private YouTubeStealer() {
     }
-    
+
+    /*With the correct YouTube video ID, the method returns a response
+    in json format, which contains all the information about the video,
+    including direct URL links to various formats.*/
+
     public static String stealVideoInfo(String videoID) {
         OutputStream os = null;
         InputStreamReader isr = null;
